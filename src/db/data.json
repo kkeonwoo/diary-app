@@ -1,0 +1,39 @@
+{
+  "diary": [
+    {
+      "id": 1,
+      "wirter": "이건우",
+      "contents": "날씨 화창",
+      "emotion": 1,
+      "date": 1662512822777
+    },
+    {
+      "id": 2,
+      "wirter": "지석진",
+      "contents": "날씨 화창",
+      "emotion": 2,
+      "date": 1662512822777
+    },
+    {
+      "id": 3,
+      "wirter": "이건우",
+      "contents": "날씨 화창",
+      "emotion": 1,
+      "date": 1662512822777
+    },
+    {
+      "id": 4,
+      "wirter": "이건우",
+      "contents": "날씨 화창",
+      "emotion": 5,
+      "date": 1662512822777
+    },
+    {
+      "id": 5,
+      "wirter": "이건우",
+      "contents": "날씨 화창",
+      "emotion": 3,
+      "date": 1662512822777
+    }
+  ]
+}
