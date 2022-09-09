@@ -159,8 +159,8 @@ $blue: rgb(118, 173, 245);
 textarea,
 select {
   width: 100%;
-  height: 50px;
-  padding: 0 20px;
+  padding: 5px 10px;
+  font-size: 14px;
   border-radius: 5px;
   background-color: #fff;
   &:focus {
@@ -194,6 +194,15 @@ label {
     border-radius: 100px;
     background-color: $blue;
     @include longShadow(darken($blue, 10), 40);
+  }
+}
+
+input,
+textarea {
+  border: 2px solid transparent;
+  &:focus-visible {
+    outline: none;
+    border: 2px solid $blue;
   }
 }
 
@@ -235,6 +244,11 @@ label {
     }
     .total {
       text-align: right;
+      strong {
+        color: $blue;
+        font-size: 24px;
+        font-weight: 900;
+      }
     }
   }
   .list {
@@ -246,6 +260,8 @@ label {
       .info {
         display: flex;
         position: relative;
+        align-items: center;
+        margin-bottom: 10px;
       }
       dl {
         display: flex;

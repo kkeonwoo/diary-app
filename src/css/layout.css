@@ -142,8 +142,8 @@ body::after {
 textarea,
 select {
   width: 100%;
-  height: 50px;
-  padding: 0 20px;
+  padding: 5px 10px;
+  font-size: 14px;
   border-radius: 5px;
   background-color: #fff;
 }
@@ -182,6 +182,16 @@ label {
   border-radius: 100px;
   background-color: rgb(118, 173, 245);
   text-shadow: 1px 1px 0px #4691f2,2px 2px 0px #4691f2,3px 3px 0px #4691f2,4px 4px 0px #4691f2,5px 5px 0px #4691f2,6px 6px 0px #4691f2,7px 7px 0px #4691f2,8px 8px 0px #4691f2,9px 9px 0px #4691f2,10px 10px 0px #4691f2,11px 11px 0px #4691f2,12px 12px 0px #4691f2,13px 13px 0px #4691f2,14px 14px 0px #4691f2,15px 15px 0px #4691f2,16px 16px 0px #4691f2,17px 17px 0px #4691f2,18px 18px 0px #4691f2,19px 19px 0px #4691f2,20px 20px 0px #4691f2,21px 21px 0px #4691f2,22px 22px 0px #4691f2,23px 23px 0px #4691f2,24px 24px 0px #4691f2,25px 25px 0px #4691f2,26px 26px 0px #4691f2,27px 27px 0px #4691f2,28px 28px 0px #4691f2,29px 29px 0px #4691f2,30px 30px 0px #4691f2,31px 31px 0px #4691f2,32px 32px 0px #4691f2,33px 33px 0px #4691f2,34px 34px 0px #4691f2,35px 35px 0px #4691f2,36px 36px 0px #4691f2,37px 37px 0px #4691f2,38px 38px 0px #4691f2,39px 39px 0px #4691f2,40px 40px 0px #4691f2;
+}
+
+input,
+textarea {
+  border: 2px solid transparent;
+}
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  border: 2px solid rgb(118, 173, 245);
 }
 
 .diaryItem textarea {
@@ -223,6 +233,11 @@ label {
 .diaryList .titleBox .total {
   text-align: right;
 }
+.diaryList .titleBox .total strong {
+  color: rgb(118, 173, 245);
+  font-size: 24px;
+  font-weight: 900;
+}
 .diaryList .list li {
   margin-bottom: 20px;
   padding: 20px;
@@ -232,6 +247,8 @@ label {
 .diaryList .list li .info {
   display: flex;
   position: relative;
+  align-items: center;
+  margin-bottom: 10px;
 }
 .diaryList .list li dl {
   display: flex;

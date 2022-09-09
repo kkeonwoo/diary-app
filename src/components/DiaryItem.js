@@ -30,7 +30,7 @@ export default function DiaryItem({ writer, emotion, contents, date, id, deleteD
                   setLocalEmotion(e.target.value);
                 }}
               >
-                <option value="1">나빠요</option>
+                <option value="1">나뻐요</option>
                 <option value="2">슬퍼요</option>
                 <option value="3">좋아요</option>
                 <option value="4">놀라워요</option>

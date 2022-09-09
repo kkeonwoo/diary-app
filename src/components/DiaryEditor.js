@@ -78,7 +78,7 @@ export default function DiaryEditor({ insertDiary }) {
           </select> */}
           <div class="list" value={diaryItem.emotion} onChange={changeDiaryItem} ref={emotionRef}>
             <label>
-              <span>나빠요</span>
+              <span>나뻐요</span>
               <input type="radio" name="emotion" value="1" />
             </label>
             <label>
