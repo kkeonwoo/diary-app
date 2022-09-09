@@ -10,6 +10,27 @@ export default function DiaryItem({ writer, emotion, contents, date, id, deleteD
   const [localContents, setLocalContents] = useState(contents);
   const [localEmotion, setLocalEmotion] = useState(emotion);
   const contentsRef = useRef();
+  // const emotionImg = function () {
+  //   switch (emotion) {
+  //     case 1:
+  //       return <img src="./images/evil.png" />;
+  //       break;
+  //     case 2:
+  //       return <img src="./public/images/cry.png" />;
+  //       break;
+  //     case 3:
+  //       return <img src="./public/images/laughing.png" />;
+  //       break;
+  //     case 4:
+  //       return <img src="./public/images/happy.png" />;
+  //       break;
+  //     case 5:
+  //       return <img src="./public/images/love.png" />;
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
   return (
     <li className={isActive ? "diaryItem on" : "diaryItem"}>
       <div className="btns">
@@ -39,6 +60,7 @@ export default function DiaryItem({ writer, emotion, contents, date, id, deleteD
             ) : (
               emotion
             )}
+            {/* <div className="imgBox">{emotionImg()}</div> */}
           </dd>
         </dl>
         <dl>
