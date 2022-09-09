@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import DiaryEditor from "./components/DiaryEditor";
 import DiaryList from "./components/DiaryList";
 import { useMemo, useRef, useState } from "react";
+import InfoBox from "./components/InfoBox";
 
 function App() {
   const dataId = useRef(0);
@@ -82,7 +83,7 @@ function App() {
   // ];
 
   const diaryAnalysis = useMemo(() => {
-    console.log("일기 분석을 시작합니다.");
+    // console.log("일기 분석을 시작합니다.");
     const total = diaryData.length;
     const good = diaryData.filter((item, idx) => {
       return item.emotion >= 3;
@@ -102,36 +103,11 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <DiaryEditor insertDiary={insertDiary} />
-      {/* 함수를 자식한테 전달, 실행은 자식이 */}
-      <div className="infoBox container">
-        <dl>
-          <dt>전체 :</dt>
-          <dd>
-            <strong>{diaryAnalysis.total}</strong>
-          </dd>
-        </dl>
-        <dl>
-          <dt>기분 좋은 날 : </dt>
-          <dd>
-            <strong>{diaryAnalysis.good}</strong>
-          </dd>
-        </dl>
-        <dl>
-          <dt>기분 더러운 날 :</dt>
-          <dd>
-            <strong>{diaryAnalysis.bad}</strong>
-          </dd>
-        </dl>
-        <dl>
-          <dt>퍼센트</dt>
-          <dd>
-            <strong>{diaryAnalysis.percent}%</strong>
-          </dd>
-        </dl>
-      </div>
+      <InfoBox diaryAnalysis={diaryAnalysis} />
       <DiaryList diaryList={diaryData} deleteDiary={deleteDiary} modifyDiary={modifyDiary} />
       {/* 자식한테 dummy를 props로 보내기 */}
+      <DiaryEditor insertDiary={insertDiary} />
+      {/* 함수를 자식한테 전달, 실행은 자식이 */}
       <Footer />
     </div>
   );

@@ -7,7 +7,7 @@ export default function DiaryList({ diaryList, deleteDiary, modifyDiary }) {
       <div className="diaryList">
         <div className="container">
           <div className="titleBox">
-            <h2>diary list</h2>
+            <h2 className="title">diary list</h2>
             <p className="total">{total}개의 일기가 있습니다.</p>
           </div>
           <ul className="list">

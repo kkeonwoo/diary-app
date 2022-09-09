@@ -7,96 +7,59 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 body {
+  position: relative;
   font-family: "Josefin Sans", "Roboto", "Noto Sans KR", sans-serif;
   font-size: 16px;
   color: #111;
-  // prettier-ignore
-  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05), 
-                                                     rgba(255, 255, 255, 0.05) 1px, 
-                                                       0, transparent 50px);
-  background-color: #333;
-}
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-li {
-  list-style: none;
+  background-color: rgb(236, 234, 214);
+  &::after {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 10%;
+    @include pseudo;
+    background: {
+      position: 50%;
+      image: url("../../public/images/bg.png");
+      size: 40%;
+    }
+  }
 }
 
 $red: rgb(218, 15, 15);
-$blue: rgb(15, 103, 218);
+$blue: rgb(118, 173, 245);
 
 #header {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 100%;
-  height: 60px;
+  height: 80px;
   position: relative;
   z-index: 99;
   overflow: hidden;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  h1 {
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: uppercase;
-    @include longShadow(#ccc, 50);
-    strong {
-      font-weight: 700;
-    }
-  }
+  line-height: 1.3;
 }
 
-.checkBox {
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  position: relative;
   display: inline-block;
-  margin-right: 20px;
-  vertical-align: middle;
-  input {
-    width: 0;
-    height: 0;
-    overflow: hidden;
-    position: absolute;
-    padding: 0;
-    border: 0;
+  &::before {
+    @include pseudo;
+    @include box(110%, 40%, $blue);
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
   }
-  input:checked ~ .label:before {
-    content: "\e5ca";
-    font-family: "Material Icons";
-    color: #fff;
-    border: none;
-    font-weight: bold;
-    background-color: lighten($blue, 10);
-
-    @include longShadow($blue, 10);
-  }
-  .label {
-    display: flex;
-    align-items: center;
-    user-select: none;
-    &:before {
-      content: "\e5ca";
-      width: 25px;
-      height: 25px;
-      overflow: hidden;
-      margin-right: 6px;
-      font-family: "Material Icons";
-      color: darken(#f8f8f8, 30);
-      border: 1px solid darken(#f8f8f8, 20);
-      font-weight: bold;
-      border-radius: 5px;
-      box-sizing: border-box;
-      background-color: #f8f8f8;
-      @include longShadow(darken(#f8f8f8, 10), 10);
-    }
+  strong {
+    font-weight: 700;
   }
 }
 
@@ -105,48 +68,131 @@ $blue: rgb(15, 103, 218);
   margin: 50px auto;
 }
 
-input,
+#insertDiary {
+  .inputBox,
+  .contents,
+  .section:not(.btns) {
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+  }
+  &.open {
+    .inputBox,
+    .contents,
+    .section:not(.btns) {
+      opacity: 1;
+    }
+  }
+  .section {
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    .list {
+      display: flex;
+      justify-content: center;
+      label {
+        position: relative;
+        height: 80px;
+        width: 100px;
+        input[type="radio"] {
+          background: none;
+          height: 0;
+          width: 0;
+          display: none;
+          opacity: 0;
+        }
+        span::before {
+          cursor: pointer;
+          @include pseudo;
+          @include box(60px, 60px, transparent);
+          @include absCenter(true, false);
+          bottom: 0;
+          background: {
+            size: contain;
+            position: 50%;
+            repeat: no-repeat;
+          }
+        }
+        &:nth-child(1) span::before {
+          background: {
+            image: url("../../public/images/evil.png");
+          }
+        }
+        &:nth-child(2) span::before {
+          background: {
+            image: url("../../public/images/cry.png");
+          }
+        }
+        &:nth-child(3) span::before {
+          background: {
+            image: url("../../public/images/laughing.png");
+          }
+        }
+        &:nth-child(4) span::before {
+          background: {
+            image: url("../../public/images/happy.png");
+          }
+        }
+        &:nth-child(5) span::before {
+          background: {
+            image: url("../../public/images/love.png");
+          }
+        }
+        // input:checked ~ span:before {
+        //   border: 1px solid $blue;
+        //   background-color: #fff;
+        // }
+      }
+    }
+  }
+  .inputBox {
+    margin-bottom: 10px;
+    input {
+      width: 100%;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+  }
+}
+
 textarea,
 select {
   width: 100%;
   height: 50px;
+  padding: 0 20px;
   border-radius: 5px;
   background-color: #fff;
-  padding: 0 20px;
   &:focus {
     outline-color: $red;
   }
 }
 textarea {
   height: 200px;
-  resize: none;
   padding: 20px;
-}
-.section {
-  margin-bottom: 20px;
+  resize: none;
 }
 label {
+  display: block;
   margin-bottom: 10px;
   font-size: 18px;
-  color: #fff;
-  display: block;
 }
 .btns {
   display: flex;
   justify-content: center;
   margin-top: 50px;
   .btn {
-    padding: 20px 50px;
-    color: #fff;
-    border-radius: 100px;
-    background-color: $blue;
-    border: none;
     display: flex;
     align-items: center;
-    font-size: 18px;
-    line-height: 1;
-    font-weight: 700;
     overflow: hidden;
+    padding: 20px 50px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    border: none;
+    border-radius: 100px;
+    background-color: $blue;
     @include longShadow(darken($blue, 10), 40);
   }
 }
@@ -157,16 +203,16 @@ label {
   }
 }
 .section {
-  text-align: left;
-  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .infoBox {
-  background-color: #f8f8f8;
-  border-radius: 10px;
+  width: 800px;
   margin: 20px auto;
   padding: 20px;
-  width: 800px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
   dl {
     display: flex;
     align-items: center;
@@ -178,15 +224,14 @@ label {
 }
 .diaryList {
   .titleBox {
-    color: #fff;
     margin: 50px 0;
     padding-top: 50px;
-    border-top: 1px dashed #fff;
+    border-top: 2px dashed rgba(0, 0, 0, 0.4);
     h2 {
       font-size: 32px;
-      text-align: center;
-      text-transform: uppercase;
       font-weight: 500;
+      text-transform: uppercase;
+      text-align: center;
     }
     .total {
       text-align: right;
@@ -194,10 +239,10 @@ label {
   }
   .list {
     li {
+      margin-bottom: 20px;
       padding: 20px;
       background-color: #fff;
       border-radius: 10px;
-      margin-bottom: 20px;
       .info {
         display: flex;
         position: relative;
@@ -212,13 +257,13 @@ label {
       }
       .btns {
         position: absolute;
-        right: 0;
         top: 0;
+        right: 0;
         margin-top: -5px;
         .btn {
-          border-radius: 5px;
-          padding: 5px;
           margin-left: 5px;
+          padding: 5px;
+          border-radius: 5px;
         }
         .confirm {
           background-color: $red;
@@ -227,9 +272,9 @@ label {
       }
       .contents {
         margin-top: 20px;
-        font-weight: 500;
-        font-size: 18px;
         padding-top: 20px;
+        font-size: 18px;
+        font-weight: 500;
         border-top: 1px dashed #d9d9d9;
         white-space: pre-wrap;
       }
@@ -239,14 +284,14 @@ label {
 #footer {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
-  margin-bottom: 50px;
+  // padding-top: 100px;
+  padding-bottom: 50px;
   p {
     padding: 15px 30px;
-    background-color: #fff;
     font-weight: 300;
-    border-radius: 100px;
     text-transform: uppercase;
+    background-color: #fff;
+    border-radius: 100px;
     strong {
       font-weight: 900;
     }

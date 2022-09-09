@@ -109,7 +109,7 @@ body {
   line-height: 1;
 }
 ol,
-ul {
+ul,li {
   list-style: none;
 }
 blockquote,
@@ -126,4 +126,14 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }

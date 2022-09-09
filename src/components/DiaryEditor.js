@@ -29,11 +29,18 @@ export default function DiaryEditor({ insertDiary }) {
     // 부모에서 만든 함수를 받아서 자식이 호출해서 사용
     insertDiary(diaryItem.writer, diaryItem.contents, diaryItem.emotion);
     alert("저장되었습니다.");
+    if (insertDiary) {
+      toggleBtn();
+    }
     setDiaryItem({
       writer: "",
       contents: "",
       emotion: 1,
     });
+  };
+  const [toggle, setToggle] = useState(true);
+  const toggleBtn = function () {
+    setToggle(!toggle);
   };
   const changeDiaryItem = function (e) {
     console.log(e.target.name);
@@ -58,48 +65,57 @@ export default function DiaryEditor({ insertDiary }) {
   //   // console.log(e.target.value);
   // };
   return (
-    <div className="container">
-      <div className="inputBox">
-        <input type="text" name="writer" value={diaryItem.writer} placeholder="이름을 입력해주세요.😊" onChange={changeDiaryItem} ref={writerRef} />
+    <>
+      <div id="insertDiary" className={toggle ? "container" : "container open"}>
+        <div className="section">
+          <h2 className="title">오늘 하루는 어땠나요?🤷</h2>
+          {/* <select name="emotion" id="" value={diaryItem.emotion} onChange={changeDiaryItem} ref={emotionRef}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select> */}
+          <div class="list" value={diaryItem.emotion} onChange={changeDiaryItem} ref={emotionRef}>
+            <label>
+              <span>나빠요</span>
+              <input type="radio" name="emotion" value="1" />
+            </label>
+            <label>
+              <span>슬퍼요</span>
+              <input type="radio" name="emotion" value="2" />
+            </label>
+            <label>
+              <span>좋아요</span>
+              <input type="radio" name="emotion" value="3" />
+            </label>
+            <label>
+              <span>놀라워요</span>
+              <input type="radio" name="emotion" value="4" />
+            </label>
+            <label>
+              <span>행복해요</span>
+              <input type="radio" name="emotion" value="5" />
+            </label>
+          </div>
+        </div>
+        <div className="inputBox">
+          <input type="text" name="writer" value={diaryItem.writer} placeholder="이름을 입력해주세요.😊" onChange={changeDiaryItem} ref={writerRef} />
+        </div>
+        <div className="contents">
+          <textarea name="contents" id="" cols="30" rows="10" value={diaryItem.contents} placeholder="내용을 입력해주세요." onChange={changeDiaryItem} ref={contentsRef}></textarea>
+        </div>
+        <div className="btns section">
+          <button
+            className="btn btnSave"
+            onClick={() => {
+              toggle ? toggleBtn() : insertDiaryItem();
+            }}
+          >
+            {toggle ? "➕" : "💾"}
+          </button>
+        </div>
       </div>
-      <div className="contents">
-        <textarea name="contents" id="" cols="30" rows="10" value={diaryItem.contents} placeholder="내용을 입력해주세요." onChange={changeDiaryItem} ref={contentsRef}></textarea>
-      </div>
-      <div className="section">
-        <label>오늘 하루는 어땠나요?🤷</label>
-        <select name="emotion" id="" value={diaryItem.emotion} onChange={changeDiaryItem} ref={emotionRef}>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-        {/* <label>
-          <span>나빠요</span>
-          <input type="radio" name="emotion" id="" value="1" />
-        </label>
-        <label>
-          <span>좋아요</span>
-          <input type="radio" name="emotion" id="" value="2" />
-        </label>
-        <label>
-          <span>감동이예요</span>
-          <input type="radio" name="emotion" id="" value="3" />
-        </label>
-        <label>
-          <span>화나요</span>
-          <input type="radio" name="emotion" id="" value="4" />
-        </label>
-        <label>
-          <span>놀라워요</span>
-          <input type="radio" name="emotion" id="" value="5" />
-        </label> */}
-      </div>
-      <div className="btns section">
-        <button className="btn btnSave" onClick={insertDiaryItem}>
-          💾
-        </button>
-      </div>
-    </div>
+    </>
   );
 }

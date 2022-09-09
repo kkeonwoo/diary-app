@@ -3,11 +3,18 @@ import { useState, useRef } from "react";
 export default function DiaryItem({ writer, emotion, contents, date, id, deleteDiary, modifyDiary }) {
   // 흩뿌린 걸 개별적으로 받아서 사용할 수 있다.
   const [isEdit, setIsEdit] = useState(false);
+  const [isActive, setActive] = useState("false");
+  const ToggleClass = () => {
+    setActive(!isActive);
+  };
   const [localContents, setLocalContents] = useState(contents);
   const [localEmotion, setLocalEmotion] = useState(emotion);
   const contentsRef = useRef();
   return (
-    <li className="diaryItem">
+    <li className={isActive ? "diaryItem on" : "diaryItem"}>
+      <div className="btns">
+        <button className="btn" onClick={ToggleClass}></button>
+      </div>
       <div className="info">
         <dl>
           <dt>글쓴이</dt>
@@ -23,11 +30,11 @@ export default function DiaryItem({ writer, emotion, contents, date, id, deleteD
                   setLocalEmotion(e.target.value);
                 }}
               >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="1">나빠요</option>
+                <option value="2">슬퍼요</option>
+                <option value="3">좋아요</option>
+                <option value="4">놀라워요</option>
+                <option value="5">행복해요</option>
               </select>
             ) : (
               emotion
@@ -77,6 +84,7 @@ export default function DiaryItem({ writer, emotion, contents, date, id, deleteD
                 <span className="material-icons">edit</span>
               </button>
               <button
+                className="btn"
                 onClick={() => {
                   if (window.confirm(`${id + 1}번째 다이어리를 지우겠습니까?`)) {
                     deleteDiary(id);
